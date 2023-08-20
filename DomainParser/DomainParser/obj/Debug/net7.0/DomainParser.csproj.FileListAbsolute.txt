@@ -1,0 +1,17 @@
+C:\Users\Admin\Desktop\DomainParser\DomainParser\DomainParser\obj\Debug\net7.0\DomainParser.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Admin\Desktop\DomainParser\DomainParser\DomainParser\obj\Debug\net7.0\DomainParser.AssemblyInfoInputs.cache
+C:\Users\Admin\Desktop\DomainParser\DomainParser\DomainParser\obj\Debug\net7.0\DomainParser.AssemblyInfo.cs
+C:\Users\Admin\Desktop\DomainParser\DomainParser\DomainParser\obj\Debug\net7.0\DomainParser.csproj.CoreCompileInputs.cache
+C:\Users\Admin\Desktop\DomainParser\DomainParser\DomainParser\bin\Debug\net7.0\DomainParser.exe
+C:\Users\Admin\Desktop\DomainParser\DomainParser\DomainParser\bin\Debug\net7.0\DomainParser.deps.json
+C:\Users\Admin\Desktop\DomainParser\DomainParser\DomainParser\bin\Debug\net7.0\DomainParser.runtimeconfig.json
+C:\Users\Admin\Desktop\DomainParser\DomainParser\DomainParser\bin\Debug\net7.0\DomainParser.dll
+C:\Users\Admin\Desktop\DomainParser\DomainParser\DomainParser\bin\Debug\net7.0\DomainParser.pdb
+C:\Users\Admin\Desktop\DomainParser\DomainParser\DomainParser\bin\Debug\net7.0\DomainsParser.dll
+C:\Users\Admin\Desktop\DomainParser\DomainParser\DomainParser\obj\Debug\net7.0\DomainParser.csproj.AssemblyReference.cache
+C:\Users\Admin\Desktop\DomainParser\DomainParser\DomainParser\obj\Debug\net7.0\DomainParser.csproj.CopyComplete
+C:\Users\Admin\Desktop\DomainParser\DomainParser\DomainParser\obj\Debug\net7.0\DomainParser.dll
+C:\Users\Admin\Desktop\DomainParser\DomainParser\DomainParser\obj\Debug\net7.0\refint\DomainParser.dll
+C:\Users\Admin\Desktop\DomainParser\DomainParser\DomainParser\obj\Debug\net7.0\DomainParser.pdb
+C:\Users\Admin\Desktop\DomainParser\DomainParser\DomainParser\obj\Debug\net7.0\DomainParser.genruntimeconfig.cache
+C:\Users\Admin\Desktop\DomainParser\DomainParser\DomainParser\obj\Debug\net7.0\ref\DomainParser.dll
