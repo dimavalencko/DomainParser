@@ -12,7 +12,7 @@ namespace DomainParser
         static async Task Main(string[] args)
         {
             var parser = new HtmlParser();
-            await parser.GetDomainList();
+            var resultPages = parser.GetDomainList();
         }
     }
 }

@@ -9,7 +9,7 @@
 
   <ItemGroup>
     <Reference Include="DomainsParser">
-      <HintPath>..\..\DomainsParser.dll</HintPath>
+      <HintPath>..\..\src\captcha\lib\bin\Debug\net7.0\DomainsParser.dll</HintPath>
     </Reference>
   </ItemGroup>
 

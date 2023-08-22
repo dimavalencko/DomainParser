@@ -34,3 +34,15 @@
 /Users/milan/Desktop/testcaptcha/DomainParser/src/captcha/lib/obj/Debug/net7.0/refint/DomainsParser.dll
 /Users/milan/Desktop/testcaptcha/DomainParser/src/captcha/lib/obj/Debug/net7.0/DomainsParser.pdb
 /Users/milan/Desktop/testcaptcha/DomainParser/src/captcha/lib/obj/Debug/net7.0/ref/DomainsParser.dll
+C:\Users\Admin\Desktop\DomainParser\src\captcha\lib\bin\Debug\net7.0\DomainsParser.deps.json
+C:\Users\Admin\Desktop\DomainParser\src\captcha\lib\bin\Debug\net7.0\DomainsParser.dll
+C:\Users\Admin\Desktop\DomainParser\src\captcha\lib\bin\Debug\net7.0\DomainsParser.pdb
+C:\Users\Admin\Desktop\DomainParser\src\captcha\lib\obj\Debug\net7.0\DomainsParser.csproj.AssemblyReference.cache
+C:\Users\Admin\Desktop\DomainParser\src\captcha\lib\obj\Debug\net7.0\DomainsParser.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Admin\Desktop\DomainParser\src\captcha\lib\obj\Debug\net7.0\DomainsParser.AssemblyInfoInputs.cache
+C:\Users\Admin\Desktop\DomainParser\src\captcha\lib\obj\Debug\net7.0\DomainsParser.AssemblyInfo.cs
+C:\Users\Admin\Desktop\DomainParser\src\captcha\lib\obj\Debug\net7.0\DomainsParser.csproj.CoreCompileInputs.cache
+C:\Users\Admin\Desktop\DomainParser\src\captcha\lib\obj\Debug\net7.0\DomainsParser.dll
+C:\Users\Admin\Desktop\DomainParser\src\captcha\lib\obj\Debug\net7.0\refint\DomainsParser.dll
+C:\Users\Admin\Desktop\DomainParser\src\captcha\lib\obj\Debug\net7.0\DomainsParser.pdb
+C:\Users\Admin\Desktop\DomainParser\src\captcha\lib\obj\Debug\net7.0\ref\DomainsParser.dll

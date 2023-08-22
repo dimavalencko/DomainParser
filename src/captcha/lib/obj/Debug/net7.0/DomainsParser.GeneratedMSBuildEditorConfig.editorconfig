@@ -8,4 +8,4 @@ build_property.PlatformNeutralAssembly =
 build_property.EnforceExtendedAnalyzerRules = 
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = DomainsParser
-build_property.ProjectDir = /Users/milan/Desktop/testcaptcha/DomainParser/src/captcha/lib/
+build_property.ProjectDir = C:\Users\Admin\Desktop\DomainParser\src\captcha\lib\
