@@ -55,7 +55,7 @@ public class CaptchaSolver
             Console.WriteLine(solvedCaptcha);
             iterator++;
             Thread.Sleep(5000);
-        } while ((solvedCaptcha.Length == 0 || solvedCaptcha == "CAPCHA_NOT_READY") && iterator < 8);
+        } while ((solvedCaptcha.Length == 0 || solvedCaptcha == "CAPCHA_NOT_READY") && iterator < 12);
 
         if (solvedCaptcha == null) {
             return null;
@@ -65,13 +65,14 @@ public class CaptchaSolver
 
         MultipartFormDataContent solveCaptchaFd = new MultipartFormDataContent();
         solveCaptchaFd.Add(new StringContent(fix.RequestId), "captcha");
-        HttpResponseMessage solveCaptcha = HttpClient.SendAsync(new HttpRequestMessage()
-        {
+
+        HttpResponseMessage solveCaptcha = HttpClient.SendAsync(new HttpRequestMessage(){
             Method = HttpMethod.Post,
             RequestUri = new Uri("https://statonline.ru/captcha"),
             Content = solveCaptchaFd
         }).Result;
 
+        Console.WriteLine("DONE");
         return fix;
     }
 
