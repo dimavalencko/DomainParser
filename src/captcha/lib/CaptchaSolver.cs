@@ -63,16 +63,16 @@ public class CaptchaSolver
 
         fix.RequestId = solvedCaptcha;
 
-        HttpResponseMessage solveCaptcha = HttpClient.SendAsync(new HttpRequestMessage(){
+        MultipartFormDataContent solveCaptchaFd = new MultipartFormDataContent();
+        solveCaptchaFd.Add(new StringContent(fix.RequestId), "captcha");
+        HttpResponseMessage solveCaptcha = HttpClient.SendAsync(new HttpRequestMessage()
+        {
             Method = HttpMethod.Post,
-            RequestUri = new Uri("https://statonline.ru/captcha")
+            RequestUri = new Uri("https://statonline.ru/captcha"),
+            Content = solveCaptchaFd
         }).Result;
 
-        if (solveCaptcha.IsSuccessStatusCode) {
-            return fix;
-        }
-
-        return null;
+        return fix;
     }
 
     private string parseCookie(string cookieAsText)

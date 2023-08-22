@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "/Users/milan/Desktop/DomainsParser/src/captcha/lib/DomainsParser.csproj": {}
+    "/Users/milan/Desktop/testcaptcha/DomainParser/src/captcha/lib/DomainsParser.csproj": {}
   },
   "projects": {
-    "/Users/milan/Desktop/DomainsParser/src/captcha/lib/DomainsParser.csproj": {
+    "/Users/milan/Desktop/testcaptcha/DomainParser/src/captcha/lib/DomainsParser.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/Users/milan/Desktop/DomainsParser/src/captcha/lib/DomainsParser.csproj",
+        "projectUniqueName": "/Users/milan/Desktop/testcaptcha/DomainParser/src/captcha/lib/DomainsParser.csproj",
         "projectName": "DomainsParser",
-        "projectPath": "/Users/milan/Desktop/DomainsParser/src/captcha/lib/DomainsParser.csproj",
+        "projectPath": "/Users/milan/Desktop/testcaptcha/DomainParser/src/captcha/lib/DomainsParser.csproj",
         "packagesPath": "/Users/milan/.nuget/packages/",
-        "outputPath": "/Users/milan/Desktop/DomainsParser/src/captcha/lib/obj/",
+        "outputPath": "/Users/milan/Desktop/testcaptcha/DomainParser/src/captcha/lib/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "/Users/milan/.nuget/NuGet/NuGet.Config"

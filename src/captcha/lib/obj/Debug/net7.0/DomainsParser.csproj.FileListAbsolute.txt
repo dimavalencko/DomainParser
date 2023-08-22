@@ -22,3 +22,15 @@
 /Users/milan/Desktop/DomainsParser/src/captcha/lib/obj/Debug/net7.0/refint/DomainsParser.dll
 /Users/milan/Desktop/DomainsParser/src/captcha/lib/obj/Debug/net7.0/DomainsParser.pdb
 /Users/milan/Desktop/DomainsParser/src/captcha/lib/obj/Debug/net7.0/ref/DomainsParser.dll
+/Users/milan/Desktop/testcaptcha/DomainParser/src/captcha/lib/bin/Debug/net7.0/DomainsParser.deps.json
+/Users/milan/Desktop/testcaptcha/DomainParser/src/captcha/lib/bin/Debug/net7.0/DomainsParser.dll
+/Users/milan/Desktop/testcaptcha/DomainParser/src/captcha/lib/bin/Debug/net7.0/DomainsParser.pdb
+/Users/milan/Desktop/testcaptcha/DomainParser/src/captcha/lib/obj/Debug/net7.0/DomainsParser.csproj.AssemblyReference.cache
+/Users/milan/Desktop/testcaptcha/DomainParser/src/captcha/lib/obj/Debug/net7.0/DomainsParser.GeneratedMSBuildEditorConfig.editorconfig
+/Users/milan/Desktop/testcaptcha/DomainParser/src/captcha/lib/obj/Debug/net7.0/DomainsParser.AssemblyInfoInputs.cache
+/Users/milan/Desktop/testcaptcha/DomainParser/src/captcha/lib/obj/Debug/net7.0/DomainsParser.AssemblyInfo.cs
+/Users/milan/Desktop/testcaptcha/DomainParser/src/captcha/lib/obj/Debug/net7.0/DomainsParser.csproj.CoreCompileInputs.cache
+/Users/milan/Desktop/testcaptcha/DomainParser/src/captcha/lib/obj/Debug/net7.0/DomainsParser.dll
+/Users/milan/Desktop/testcaptcha/DomainParser/src/captcha/lib/obj/Debug/net7.0/refint/DomainsParser.dll
+/Users/milan/Desktop/testcaptcha/DomainParser/src/captcha/lib/obj/Debug/net7.0/DomainsParser.pdb
+/Users/milan/Desktop/testcaptcha/DomainParser/src/captcha/lib/obj/Debug/net7.0/ref/DomainsParser.dll
