@@ -11,8 +11,15 @@ namespace DomainParser
     {
         static async Task Main(string[] args)
         {
-            var parser = new HtmlParser();
-            var resultPages = parser.GetDomainList();
+            try
+            {
+                var parser = new HtmlParser();
+                var resultPages = parser.GetDomainList();
+                Console.WriteLine("Programm ended. Result: " + resultPages);
+            }
+            catch (Exception ex) {
+                Console.WriteLine("Ошибка в файле programm.cs. Тело ошибки: ", ex.Message);
+            }
         }
     }
 }
