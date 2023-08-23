@@ -61,7 +61,7 @@ public class CaptchaSolver
             return null;
         }
 
-        fix.RequestId = solvedCaptcha;
+        fix.RequestId = solvedCaptcha.ToUpper();
 
         MultipartFormDataContent solveCaptchaFd = new MultipartFormDataContent();
         solveCaptchaFd.Add(new StringContent(fix.RequestId), "captcha");
