@@ -47,8 +47,6 @@ public class CaptchaSolver
         Cookies.Add(new Uri("https://statonline.ru"), new Cookie("sess_id_", fix.SESS_ID));
 
         string? idRes = Endpoint.SolveRequest(base64);
-        Console.WriteLine(base64);
-        Console.WriteLine(idRes);
         if (idRes == null) {
             return null;
         }
@@ -57,14 +55,19 @@ public class CaptchaSolver
         CaptchaSolvedResponse solvedCaptcha = new CaptchaSolvedResponse();
         do {
             solvedCaptcha = Endpoint.GetResponse(idRes);
+            Console.WriteLine("СТАТУС: " + solvedCaptcha.request + ". ОТВЕТ: " + solvedCaptcha.status);
             if (solvedCaptcha == null) {
                 Console.WriteLine("Произошла ошибка в HTTP запросе к капче");
                 break;
             }
 
-            Console.WriteLine(solvedCaptcha.request);
+            if (solvedCaptcha.request == "ERROR_CAPTCHA_UNSOLVABLE" || solvedCaptcha.request == "ERROR_BAD_DUPLICATES") {
+                Console.WriteLine("Не удалось решить капчу");
+                return null;
+            }
+
             Thread.Sleep(2500);
-        } while ((solvedCaptcha.status == 0 && solvedCaptcha.request != "ERROR_CAPTCHA_UNSOLVABLE") || (solvedCaptcha.status == 0 && solvedCaptcha.request != "ERROR_BAD_DUPLICATES"));
+        } while (solvedCaptcha.status == 0);
 
         if (solvedCaptcha == null) {
             return null;
