@@ -9,7 +9,12 @@ public class CaptchaSolverEndpoint
 
     public CaptchaSolverEndpoint(Client client) => Client = client;
 
-    public string? GetResponse(string requestId)
+    public void Bad(string requestId)
+    {
+        Client.HttpClient.GetAsync(Client.BasePath + "/res.php?key=" + Client.APIKey + "&action=reportbad&id=" + requestId);
+    }
+
+    public CaptchaSolvedResponse? GetResponse(string requestId)
     {
         try {
             HttpResponseMessage response = Client.HttpClient.GetAsync(Client.BasePath + "/res.php?key=" + Client.APIKey + "&action=get&id=" + requestId + "&json=1").Result;
@@ -24,7 +29,7 @@ public class CaptchaSolverEndpoint
                 return null;
             }
             
-            return captchaResponse.request;
+            return captchaResponse;
         } catch (HttpRequestException) {
             return null;
         }        

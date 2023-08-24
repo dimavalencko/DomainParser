@@ -19,6 +19,11 @@ public class CaptchaSolver
         });
     }
 
+    public void bad(string requestId)
+    {
+        Endpoint.Bad(requestId);
+    }
+
     public CaptchaFix trySolveAsync()
     {
         CaptchaFix fix = new CaptchaFix();
@@ -42,26 +47,29 @@ public class CaptchaSolver
         Cookies.Add(new Uri("https://statonline.ru"), new Cookie("sess_id_", fix.SESS_ID));
 
         string? idRes = Endpoint.SolveRequest(base64);
+        Console.WriteLine(base64);
+        Console.WriteLine(idRes);
         if (idRes == null) {
             return null;
         }
 
-        Console.WriteLine(idRes);
-
-        string solvedCaptcha = string.Empty;
-        int iterator = 0;
+        CaptchaSolvedResponse solvedCaptcha = new CaptchaSolvedResponse();
         do {
-            solvedCaptcha = Endpoint.GetResponse(idRes) ?? string.Empty;
-            Console.WriteLine(solvedCaptcha);
-            iterator++;
-            Thread.Sleep(5000);
-        } while ((solvedCaptcha.Length == 0 || solvedCaptcha == "CAPCHA_NOT_READY") && iterator < 12);
+            solvedCaptcha = Endpoint.GetResponse(idRes);
+            if (solvedCaptcha == null) {
+                Console.WriteLine("Произошла ошибка в HTTP запросе к капче");
+                break;
+            }
+
+            Console.WriteLine(solvedCaptcha.request);
+            Thread.Sleep(2500);
+        } while ((solvedCaptcha.status == 0 && solvedCaptcha.request != "ERROR_CAPTCHA_UNSOLVABLE") || (solvedCaptcha.status == 0 && solvedCaptcha.request != "ERROR_BAD_DUPLICATES"));
 
         if (solvedCaptcha == null) {
             return null;
         }
 
-        fix.RequestId = solvedCaptcha.ToUpper();
+        fix.RequestId = solvedCaptcha.request.ToUpper();
 
         MultipartFormDataContent solveCaptchaFd = new MultipartFormDataContent();
         solveCaptchaFd.Add(new StringContent(fix.RequestId), "captcha");
@@ -72,7 +80,7 @@ public class CaptchaSolver
             Content = solveCaptchaFd
         }).Result;
 
-        Console.WriteLine("DONE");
+        Console.WriteLine("CAPTCHA HAS BEEN SOLVED");
         return fix;
     }
 

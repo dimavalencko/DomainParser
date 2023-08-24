@@ -55,26 +55,24 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Admin\\.nuget\\packages\\": {}
+    "/Users/milan/.nuget/packages/": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Admin\\Desktop\\DomainParser\\src\\captcha\\lib\\DomainsParser.csproj",
+      "projectUniqueName": "/Users/milan/Desktop/mydir/DomainParser/src/captcha/lib/DomainsParser.csproj",
       "projectName": "DomainsParser",
-      "projectPath": "C:\\Users\\Admin\\Desktop\\DomainParser\\src\\captcha\\lib\\DomainsParser.csproj",
-      "packagesPath": "C:\\Users\\Admin\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Admin\\Desktop\\DomainParser\\src\\captcha\\lib\\obj\\",
+      "projectPath": "/Users/milan/Desktop/mydir/DomainParser/src/captcha/lib/DomainsParser.csproj",
+      "packagesPath": "/Users/milan/.nuget/packages/",
+      "outputPath": "/Users/milan/Desktop/mydir/DomainParser/src/captcha/lib/obj/",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\Admin\\AppData\\Roaming\\NuGet\\NuGet.Config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        "/Users/milan/.nuget/NuGet/NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "net7.0"
       ],
       "sources": {
-        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
@@ -114,7 +112,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.400\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/7.0.400/RuntimeIdentifierGraph.json"
       }
     }
   }

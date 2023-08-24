@@ -1,10 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "4YOjyaNpPLtGk60BkQ8oiDRTwceVbRlRrBd4OtEAaCK18my54pJWQxz06eVzc4J88ZzXYKD0MBrYN+jfIqpKCQ==",
+  "dgSpecHash": "m1svvjfCt2mp3jQxj4QBfAHwsr6n6pVx7v6bJo7pBNxgLGMpVSWCqmMocuHqciOJNzHHyX9JOypTwH2mNnKWqg==",
   "success": true,
-  "projectFilePath": "C:\\Users\\Admin\\Desktop\\DomainParser\\src\\captcha\\lib\\DomainsParser.csproj",
+  "projectFilePath": "/Users/milan/Desktop/mydir/DomainParser/src/captcha/lib/DomainsParser.csproj",
   "expectedPackageFiles": [
-    "C:\\Users\\Admin\\.nuget\\packages\\newtonsoft.json\\13.0.3\\newtonsoft.json.13.0.3.nupkg.sha512"
+    "/Users/milan/.nuget/packages/newtonsoft.json/13.0.3/newtonsoft.json.13.0.3.nupkg.sha512"
   ],
   "logs": []
 }
