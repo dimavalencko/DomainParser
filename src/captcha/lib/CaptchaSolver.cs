@@ -53,6 +53,7 @@ public class CaptchaSolver
             return null;
         }
 
+        fix.RequestId = idRes;
         CaptchaSolvedResponse solvedCaptcha = new CaptchaSolvedResponse();
         do {
             solvedCaptcha = Endpoint.GetResponse(idRes);
@@ -69,10 +70,10 @@ public class CaptchaSolver
             return null;
         }
 
-        fix.RequestId = solvedCaptcha.request.ToUpper();
+        fix.Response = solvedCaptcha.request.ToUpper();
 
         MultipartFormDataContent solveCaptchaFd = new MultipartFormDataContent();
-        solveCaptchaFd.Add(new StringContent(fix.RequestId), "captcha");
+        solveCaptchaFd.Add(new StringContent(fix.Response), "captcha");
 
         HttpResponseMessage solveCaptcha = HttpClient.SendAsync(new HttpRequestMessage(){
             Method = HttpMethod.Post,
