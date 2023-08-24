@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Diagnostics.Metrics;
 using System.IO;
 using System.Linq;
 using System.Net;
@@ -14,13 +15,24 @@ namespace DomainParser.app
 {
     public class HtmlParser
     {
-        protected string FilePath = "domains.txt";
+        protected string FilePath;
 
-        static HttpClient client = new HttpClient();
+        protected int CaptchaSolveCount = 0;
 
-        Client toCaptcha = new Client("http://2captcha.com", "88a0ea518dce88ec8c93df852a212f49");
+        protected Uri uri;
 
-        public HtmlParser(){}
+        protected static HttpClient client = new HttpClient();
+
+        protected Client toCaptcha;
+
+        protected CaptchaSolver solver;
+
+        public HtmlParser() {
+            toCaptcha = new Client("https://2captcha.com", "eafa7b7a0ad4ee02f47bcf463e3a6ebe");
+            solver = new CaptchaSolver(toCaptcha);
+            FilePath = GenerateFileName();
+            uri = new Uri("https://statonline.ru/domains?create_to=&tld=ru&page=1&till_from=&sort_field=domain_name_idn&order=ASC&registered=REGISTERED&till_to=&search=&regfilter=123&create_from=&rows_per_page=200&owner=");
+        }
 
         /// <summary>
         /// Главный метод парсинга
@@ -32,10 +44,6 @@ namespace DomainParser.app
             try
             {
                 int pageNum = 1;
-                Uri uri = new Uri("https://statonline.ru/domains?create_to=&tld=ru&page="
-                    + pageNum
-                    + "&till_from=&sort_field=domain_name_idn&order=ASC&registered=REGISTERED&till_to=&search=&regfilter=123&create_from=&rows_per_page=200&owner=");
-
                 CaptchaSolver solver = new CaptchaSolver(toCaptcha);
 
                 #region Оставил часть кода, т.к все равно в GetPageData будет запрашивать капчу
@@ -52,8 +60,15 @@ namespace DomainParser.app
                 for (int i = 0; i < 1668; i++)
                 {
                     Console.WriteLine("Текущая страница - " + pageNum.ToString());
-                    var page = GetPageData(uri).Result;
-                    var domains = GetAllDomains(page);
+                    var parsedPage = ParsePage().Result; // Получаем страницу, которую спарсили
+                    var capthaIsSolved = CheckCaptchaOnPage(parsedPage);
+                    if(!capthaIsSolved) // Пробуем снова на этой странице
+                    {
+                        i--;
+                        continue;
+                    }
+                    var domains = GetAllDomains(parsedPage);
+
                     pageNum++;
                     uri = new Uri("https://statonline.ru/domains?create_to=&tld=ru&page="
                         + pageNum
@@ -70,29 +85,95 @@ namespace DomainParser.app
         }
 
         /// <summary>
+        /// Ршаем капчу
+        /// </summary>
+        /// <param name="uri"></param>
+        /// <returns></returns>
+        /// <exception cref="Exception"></exception>
+        public CaptchaFix SolveCaptcha(string page)
+        {
+            try
+            {
+                CaptchaSolveCount++; // 1
+                CaptchaFix fix = null;
+
+                // Пока капча не решилась - отправляем запросы на решение
+                do { 
+                    fix = CaptchaSolve();
+                    Console.WriteLine("Попытка решить капчу. Ответ: " + fix.Response);
+                }
+                while (fix == null);
+                    
+                SetCookie(fix);
+                return fix;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Error in GetPageData. Error body: ", ex.Message);
+                throw new Exception(ex.Message);
+            }
+        }
+         
+        /// <summary>
         /// Парсим страницу
         /// </summary>
         /// <param name="uri"></param>
         /// <returns></returns>
         /// <exception cref="Exception"></exception>
-        public async Task<string> GetPageData(Uri uri)
+        public async Task<string> ParsePage()
         {
             try
             {
                 var stringPage = await client.GetAsync(uri);
                 var bytePage = stringPage.Content.ReadAsByteArrayAsync().Result;
-                var result = Encoding.UTF8.GetString(bytePage);
+                return Encoding.UTF8.GetString(bytePage);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Error in GetPageData. Error body: ", ex.Message);
+                throw new Exception(ex.Message);
+            }
+        } /// <summary>
+        
+        /// Проверяем на наличие капчи
+        /// </summary>
+        /// <param name="uri"></param>
+        /// <returns></returns>
+        /// <exception cref="Exception"></exception>
+        public Boolean CheckCaptchaOnPage(string page)
+        {
+            int counter = 0;
+            string captchaRegex = @"input:\[name=""captcha""\](\w*)";
+            try
+            {
+                var regResut = Regex.Match(page, captchaRegex);
 
-                // Проверяем на наличие капчи
-                var regResut = Regex.Match(result, @"input:\[name=""captcha""\](\w*)");
-
-                if (regResut.Success) // Если капча
+                if(regResut.Success) // Если нужно решить капчу
                 {
-                    var fix = CaptchaSolve(); // Решаем 
-                    SetCookie(fix);
-                    result = GetPageData(uri).Result; // Снова просим страницу
+                    Console.WriteLine("Нужно решить капчу");
+                    CaptchaFix fix = null;
+                    do
+                    {
+                        counter++;
+
+                        fix = SolveCaptcha(page); // Решаем капчу и ставим куки
+                        var parsedPage = ParsePage().Result; // Снова парсим страницу и проверяем на наличие капчи
+
+                        if (Regex.Match(parsedPage, captchaRegex).Success) // Если снова капча - возврат денег
+                        {
+                            Console.WriteLine("Капча решена неверно. Возврат денег.");
+                            solver.bad(fix.RequestId);
+                            fix = null;
+                        }
+                        else
+                        {
+                            Console.WriteLine("Капча решена. Попыток - " + counter.ToString());
+                            return true;
+                        }
+                    }
+                    while (fix == null);
                 }
-                return result;
+                return true;
             }
             catch (Exception ex)
             {
@@ -110,7 +191,6 @@ namespace DomainParser.app
         {
             try
             {
-
                 client.DefaultRequestHeaders.Clear(); // Предварительно чистим куки
                 client.DefaultRequestHeaders.Add("cookie", $"XSAE={fix.XSAE}; sess_id_={fix.SESS_ID}");
             }
@@ -215,6 +295,17 @@ namespace DomainParser.app
                 Console.WriteLine("Error in GetAllDomains. Error body: ", ex.Message);
                 throw new Exception(ex.Message);
             }
+        }
+
+        /// <summary>
+        /// Генерируем имя файла
+        /// </summary>
+        /// <returns>Список брошенных доменов</returns>
+        public string GenerateFileName()
+        {
+            string date = '-' + DateTime.Now.ToShortDateString();
+            string time = '-' + DateTime.Now.Hour.ToString() + '.' + DateTime.Now.Minute.ToString() + '.' + DateTime.Now.Second.ToString();
+            return "domains" + date + time + ".txt";
         }
 
         /// <summary>
