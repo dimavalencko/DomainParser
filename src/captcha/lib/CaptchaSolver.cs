@@ -51,6 +51,8 @@ public class CaptchaSolver
             return null;
         }
 
+        Console.WriteLine(idRes);
+
         fix.RequestId = idRes;
         CaptchaSolvedResponse solvedCaptcha = new CaptchaSolvedResponse();
         do {
@@ -61,7 +63,7 @@ public class CaptchaSolver
                 break;
             }
 
-            if (solvedCaptcha.request == "ERROR_CAPTCHA_UNSOLVABLE" || solvedCaptcha.request == "ERROR_BAD_DUPLICATES") {
+            if ((solvedCaptcha.status == 0 && solvedCaptcha.request != "CAPCHA_NOT_READY") || (solvedCaptcha.status == 1 && solvedCaptcha.request == "ERROR_BAD_DUPLICATES") || (solvedCaptcha.status == 0 && solvedCaptcha.request == "ERROR_BAD_DUPLICATES")) {
                 Console.WriteLine("Не удалось решить капчу");
                 return null;
             }
